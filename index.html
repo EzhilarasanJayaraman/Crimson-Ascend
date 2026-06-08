@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crimson Ascend - Premium Digital Agency</title>
+    <style>
+        /* --- 1. Base Variables & Typography --- */
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;800&display=swap');
+
+        :root {
+            --bg-dark: #0f172a;
+            --bg-darker: #020617;
+            --accent-1: #3b82f6;
+            --accent-2: #8b5cf6;
+            --accent-3: #06b6d4;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --max-width: 1200px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- 2. Desktop Navigation (System View) --- */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .header-container {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h3 {
+            font-weight: 800;
+            font-size: 1.4rem;
+            background: linear-gradient(90deg, #fff, var(--accent-1));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav a {
+            color: var(--text-main);
+            text-decoration: none;
+            margin-left: 30px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent-3);
+        }
+
+        /* --- 3. Desktop Hero Section --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 8% 80px;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 25px;
+            letter-spacing: -1px;
+        }
+
+        .hero span {
+            background: linear-gradient(90deg, var(--accent-1), var(--accent-3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .typing-container {
+            font-size: 1.6rem;
+            font-weight: 500;
+            margin-bottom: 35px;
+            color: var(--text-muted);
+            min-height: 38px;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1.2em;
+            background-color: var(--accent-1);
+            vertical-align: text-bottom;
+            animation: blink 0.8s infinite;
+        }
+
+        @keyframes blink { 50% { opacity: 0; } }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 32px;
+            border-radius: 50px;
+            background: #fff;
+            color: var(--bg-dark);
+            text-decoration: none;
+            font-weight: 700;
+            margin: 10px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.15);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-outline:hover {
+            background: var(--glass-bg);
+            border-color: #fff;
+        }
+
+        /* --- 4. Content Layout & Dynamic Grids --- */
+        section {
+            padding: 120px 8%;
+            position: relative;
+        }
+
+        .section-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 60px;
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            padding: 40px 30px;
+            border-radius: 24px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-align: center;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .card h3 {
+            margin-top: 15px;
+            margin-bottom: 12px;
+            font-size: 1.35rem;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .price-tag {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #fff;
+            margin: 15px 0;
+        }
+
+        /* Statistics Layout */
+        .stats-grid {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .counter, .counter-text {
+            font-size: 3.2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff, var(--text-muted));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .counter-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* --- 5. FAQ --- */
+        .faq {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        details {
+            background: rgba(30, 41, 59, 0.4);
+            margin: 15px 0;
+            padding: 22px;
+            border-radius: 16px;
+            border: 1px solid var(--glass-border);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        details:hover {
+            background: rgba(30, 41, 59, 0.7);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        summary {
+            font-weight: 600;
+            font-size: 1.1rem;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        summary::-webkit-details-marker { display: none; }
+        
+        details p {
+            margin-top: 15px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        footer {
+            text-align: center;
+            padding: 50px 20px;
+            background: var(--bg-darker);
+            color: var(--text-muted);
+            border-top: 1px solid var(--glass-border);
+            font-size: 0.95rem;
+        }
+
+        /* --- 6. Utilities & Desktop Floating Blocks --- */
+        .hidden {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .whatsapp {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: #fff;
+            padding: 16px 26px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .whatsapp:hover {
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 0 15px 30px rgba(37, 211, 102, 0.5);
+        }
+
+        /* Ambient Visual Blobs */
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.35;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .b1 {
+            width: 500px;
+            height: 500px;
+            background: var(--accent-1);
+            left: -100px;
+            top: 10%;
+            animation: float 14s infinite alternate ease-in-out;
+        }
+
+        .b2 {
+            width: 450px;
+            height: 450px;
+            background: var(--accent-2);
+            right: -50px;
+            top: 40%;
+            animation: float 18s infinite alternate-reverse ease-in-out;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(60px, -80px) scale(1.05); }
+        }
+
+        /* --- 7. Responsive Adaptations (Mobile & Tablet Viewports) --- */
+        @media (max-width: 992px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header { 
+                padding: 15px 5%;
+            }
+            .header-container {
+                flex-direction: column;
+                gap: 12px;
+            }
+            nav { 
+                display: flex; 
+                flex-wrap: wrap; 
+                justify-content: center; 
+                gap: 5px;
+            }
+            nav a { 
+                margin: 5px 12px; 
+                font-size: 0.9rem;
+            }
+            section {
+                padding: 70px 6%;
+            }
+            .hero {
+                padding: 150px 6% 60px;
+                min-height: auto;
+            }
+            .hero h1 { 
+                font-size: 2.4rem; 
+            }
+            .typing-container {
+                font-size: 1.25rem;
+                min-height: 30px;
+            }
+            .btn {
+                width: 100%;
+                margin: 8px 0;
+            }
+            .grid { 
+                grid-template-columns: 1fr; 
+                gap: 20px;
+            }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            .stats-grid .card {
+                padding: 25px 15px;
+                border-radius: 16px;
+            }
+            .stats-grid .counter, .stats-grid .counter-text {
+                font-size: 2rem;
+            }
+            .whatsapp {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 22px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <h3>Crimson Ascend</h3>
+            <nav>
+                <a href="#services">Services</a>
+                <a href="#portfolio">Portfolio</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="blob b1"></div>
+        <div class="blob b2"></div>
+
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Building Digital Experiences<br><span>That Drive Growth</span></h1>
+                <div class="typing-container">
+                    <span id="typing"></span><span class="cursor"></span>
+                </div>
+                <p style="margin-bottom: 35px; color: var(--text-muted); font-size: 1.1rem; line-height: 1.7;">
+                    We craft premium, high-converting websites for businesses, startups, hospitals, and modern brands.
+                </p>
+                <a href="#contact" class="btn">Get Free Consultation</a>
+                <a href="#portfolio" class="btn btn-outline">View Projects</a>
+            </div>
+        </section>
+
+        <section class="hidden">
+            <div class="section-container">
+                <h2>Trusted By Growing Businesses</h2>
+                <div class="grid stats-grid">
+                    <div class="card">
+                        <div class="counter" data-target="2">0</div>
+                        <p>Projects Delivered</p>
+                    </div>
+                    <div class="card">
+                        <div class="counter" data-target="100">0</div>
+                        <p>% Responsive Design</p>
+                    </div>
+                    <div class="card">
+                        <div class="counter-container">
+                            <span class="counter" data-target="24">0</span>
+                            <span class="counter-text">/7</span>
+                        </div>
+                        <p>Client Support</p>
+                    </div>
+                    <div class="card">
+                        <div class="counter" data-target="10">0</div>
+                        <p>Days Avg. Delivery</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="hidden">
+            <div class="section-container">
+                <h2>Our Services</h2>
+                <div class="grid">
+                    <div class="card">
+                        <div style="font-size: 2.5rem;">🌐</div>
+                        <h3>Corporate Websites</h3>
+                        <p>Professional online presence for modern companies.</p>
+                    </div>
+                    <div class="card">
+                        <div style="font-size: 2.5rem;">🛒</div>
+                        <h3>E-Commerce</h3>
+                        <p>Secure, scalable online stores that drive sales.</p>
+                    </div>
+                    <div class="card">
+                        <div style="font-size: 2.5rem;">🏥</div>
+                        <h3>Healthcare Portals</h3>
+                        <p>HIPAA compliant sites with appointment booking.</p>
+                    </div>
+                    <div class="card">
+                        <div style="font-size: 2.5rem;">📱</div>
+                        <h3>Landing Pages</h3>
+                        <p>High-converting pages tailored for ad campaigns.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="hidden">
+            <div class="section-container">
+                <h2>Selected Works</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>City Care Hospital</h3>
+                        <p>Modern healthcare platform with patient portals.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Bistro 24</h3>
+                        <p>Elegant restaurant site with real-time reservations.</p>
+                    </div>
+                    <div class="card">
+                        <h3>FinTech Startup</h3>
+                        <p>Sleek, secure landing page for a modern finance app.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pricing" class="hidden">
+            <div class="section-container">
+                <h2>Transparent Pricing</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>Starter Plan</h3>
+                        <span class="price-tag">₹3,999 - ₹9,999</span>
+                        <p>Perfect for personal brands and small local shops.</p>
+                    </div>
+                    <div class="card" style="border-color: var(--accent-1); position: relative; overflow: hidden;">
+                        <div style="position: absolute; top: 15px; right: -30px; background: var(--accent-1); color: #fff; padding: 5px 30px; transform: rotate(45deg); font-size: 0.8rem; font-weight: bold;">POPULAR</div>
+                        <h3>Business Plan</h3>
+                        <span class="price-tag">₹9,999 - ₹19,999</span>
+                        <p>Ideal for growing companies needing advanced features.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Enterprise</h3>
+                        <span class="price-tag">Custom</span>
+                        <p>Tailored architecture for large-scale operations.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="hidden">
+            <div class="section-container">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq">
+                    <details>
+                        <summary>How long does a website take to build? <span>+</span></summary>
+                        <p>Standard business websites usually take between 3 to 10 days depending on the complexity of the design and the features required.</p>
+                    </details>
+                    <details>
+                        <summary>Will my website be mobile-friendly? <span>+</span></summary>
+                        <p>Absolutely. Every website we build is 100% responsive, ensuring it looks beautiful and functions perfectly on smartphones, tablets, and desktops.</p>
+                    </details>
+                    <details>
+                        <summary>Do you provide ongoing support and maintenance? <span>+</span></summary>
+                        <p>Yes! We offer monthly maintenance packages to keep your website secure, updated, and running at peak performance.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="hidden">
+            <div class="section-container" style="text-align: center;">
+                <h2>Ready to Start Your Project?</h2>
+                <p style="color: var(--text-muted); margin-bottom: 35px; font-size: 1.1rem;">
+                    Email: contact.ezhilarasan@gmail.com<br>
+                    Direct Line: +91 98429 88047
+                </p>
+                <a class="btn" href="https://wa.me/919842988047?text=Hi%20Ezhil%20Web%20Studio!%20I'm%20interested%20in%20requesting%20a%20custom%20proposal." target="_blank" rel="noopener noreferrer">Request a Custom Proposal</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 Crimson Ascend. All rights reserved.</p>
+    </footer>
+
+    <a class="whatsapp" href="https://wa.me/919842988047?text=Hi%20Ezhil%20Web%20Studio!%20I'm%20interested%20in%20building%20a%20website." target="_blank" rel="noopener noreferrer">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+        Chat on WhatsApp
+    </a>
+
+    <script>
+        // 1. Dynamic Auto-Typing Script
+        const words = ["Business Websites", "E-Commerce Stores", "Hospital Portals", "High-Converting Landing Pages"];
+        let i = 0, j = 0, isDeleting = false;
+        
+        function type() {
+            let currentWord = words[i];
+            let typingElement = document.getElementById('typing');
+            
+            if (typingElement) {
+                typingElement.innerHTML = currentWord.substring(0, j);
+            }
+
+            if (!isDeleting) {
+                j++;
+                if (j > currentWord.length) {
+                    isDeleting = true;
+                    setTimeout(type, 1500); 
+                    return;
+                }
+            } else {
+                j--;
+                if (j === 0) {
+                    isDeleting = false;
+                    i = (i + 1) % words.length;
+                }
+            }
+            setTimeout(type, isDeleting ? 40 : 100);
+        }
+        
+        window.onload = type;
+
+        // 2. Performance-safe Content Fade-In Observers
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, { threshold: 0.05 });
+
+        document.querySelectorAll('.hidden').forEach(el => fadeObserver.observe(el));
+
+        // 3. Counter Progression Logic
+        const counterObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
+                    const target = +counter.dataset.target;
+                    let count = 0;
+                    const increment = target / 50; 
+
+                    const updateCount = setInterval(() => {
+                        count += increment;
+                        if (count >= target) {
+                            counter.innerText = target;
+                            clearInterval(updateCount);
+                        } else {
+                            counter.innerText = Math.ceil(count);
+                        }
+                    }, 40);
+
+                    observer.unobserve(counter);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        document.querySelectorAll('.counter').forEach(c => counterObserver.observe(c));
+    </script>
+
+</body>
+</html>
