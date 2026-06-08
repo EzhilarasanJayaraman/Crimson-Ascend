@@ -37,11 +37,6 @@ Our focus is on creating visually appealing, SEO-friendly, and user-centric digi
 Crimson-Ascend/
 │
 ├── index.html
-├── style.css
-├── script.js
-├── assets/
-│   ├── images/
-│   └── icons/
 └── README.md
 ```
 
